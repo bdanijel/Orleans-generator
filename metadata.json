@@ -1,0 +1,6 @@
+{
+  "name": "Orleans Board Game Companion",
+  "description": "Kompletan digitalni vodič za društvenu igru Orleans: brzi setup prema broju igrača, praćenje rundi i događaja, katalog zgrada i precizan kalkulator završnih poena.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
