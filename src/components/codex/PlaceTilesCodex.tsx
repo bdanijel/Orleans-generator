@@ -68,21 +68,21 @@ export function PlaceTilesCodex({ language }: PlaceTilesCodexProps) {
         </div>
 
         {/* Expansion Selection Bar */}
-        <div className="flex flex-wrap items-center gap-2 pb-2">
-          <span className="text-xs text-stone-400 font-semibold">{language === 'sr' ? 'Edicija:' : 'Edition:'}</span>
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+          <span className="text-xs text-stone-400 font-semibold shrink-0 mr-1">{language === 'sr' ? 'Edicija:' : 'Edition:'}</span>
           {[
             { id: 'all', labelSr: 'Sve zgrade', labelEn: 'All Editions' },
-            { id: 'base', labelSr: '⚜️ Osnovna igra (20)', labelEn: 'Base Game (20)' },
+            { id: 'base', labelSr: '⚜️ Osnovna (20)', labelEn: 'Base Game (20)' },
             { id: 'trade_intrigue', labelSr: '📜 Trade & Intrigue (3)', labelEn: 'Trade & Intrigue (3)' },
             { id: 'invasion', labelSr: '⚔️ Invasion (7)', labelEn: 'Invasion (7)' }
           ].map(exp => (
             <button
               key={exp.id}
               onClick={() => setSelectedExpansion(exp.id as any)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+              className={`px-3 py-2 rounded-xl text-xs font-bold transition cursor-pointer whitespace-nowrap min-h-[40px] flex items-center ${
                 selectedExpansion === exp.id
-                  ? 'bg-amber-600 text-stone-950'
-                  : 'bg-stone-950 text-stone-400 hover:text-stone-200 border border-stone-800'
+                  ? 'bg-amber-600 text-stone-950 font-black shadow-md'
+                  : 'bg-stone-950 text-stone-300 hover:text-stone-100 border border-stone-800'
               }`}
             >
               {language === 'sr' ? exp.labelSr : exp.labelEn}
@@ -91,28 +91,39 @@ export function PlaceTilesCodex({ language }: PlaceTilesCodexProps) {
         </div>
 
         {/* Filter Controls */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
           {/* Search Box */}
           <div className="md:col-span-4 relative">
-            <Search className="w-4 h-4 text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
-              placeholder={language === 'sr' ? 'Pretraži po nazivu, nemačkom imenu, efektu...' : 'Search by name, German name, effect...'}
+              inputMode="search"
+              placeholder={language === 'sr' ? 'Pretraži zgrade, nemačko ime, efekat...' : 'Search place tiles, German name, effect...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-stone-950 border border-stone-800 focus:border-amber-500 rounded-lg text-xs md:text-sm text-stone-200 placeholder:text-stone-500"
+              className="w-full pl-10 pr-9 py-2.5 bg-stone-950 border border-stone-800 focus:border-amber-500 rounded-xl text-base text-stone-100 placeholder:text-stone-500 min-h-[44px]"
             />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-200 text-xs w-6 h-6 flex items-center justify-center rounded-full bg-stone-900 border border-stone-750 cursor-pointer"
+                aria-label="Obriši pretragu"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
           {/* Category Tabs */}
-          <div className="md:col-span-3 flex items-center p-1 bg-stone-950 border border-stone-800 rounded-lg">
+          <div className="md:col-span-3 flex items-center p-1 bg-stone-950 border border-stone-800 rounded-xl">
             {(['all', 'I', 'II'] as const).map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`flex-1 py-1.5 text-xs font-bold rounded-md transition cursor-pointer ${
+                className={`flex-1 py-2 text-xs font-bold rounded-lg transition cursor-pointer min-h-[38px] ${
                   selectedCategory === cat
-                    ? 'bg-amber-600 text-stone-950 shadow-sm'
+                    ? 'bg-amber-600 text-stone-950 shadow-md font-black'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >
@@ -122,7 +133,7 @@ export function PlaceTilesCodex({ language }: PlaceTilesCodexProps) {
           </div>
 
           {/* Type Filter */}
-          <div className="md:col-span-5 flex items-center gap-1.5 overflow-x-auto p-1 bg-stone-950 border border-stone-800 rounded-lg">
+          <div className="md:col-span-5 flex items-center gap-1.5 overflow-x-auto p-1 bg-stone-950 border border-stone-800 rounded-xl no-scrollbar">
             {[
               { id: 'all', nameSr: 'Sve vrste', nameEn: 'All types' },
               { id: 'goods', nameSr: 'Roba', nameEn: 'Goods' },
@@ -134,9 +145,9 @@ export function PlaceTilesCodex({ language }: PlaceTilesCodexProps) {
               <button
                 key={t.id}
                 onClick={() => setSelectedType(t.id as any)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-md whitespace-nowrap transition cursor-pointer ${
+                className={`px-3 py-2 text-xs font-semibold rounded-lg whitespace-nowrap transition cursor-pointer min-h-[38px] flex items-center ${
                   selectedType === t.id
-                    ? 'bg-stone-800 text-amber-400 border border-amber-500/40'
+                    ? 'bg-stone-800 text-amber-400 border border-amber-500/40 font-bold'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >

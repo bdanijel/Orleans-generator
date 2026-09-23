@@ -353,19 +353,20 @@ export function SetupGuide({ language }: SetupGuideProps) {
           </div>
 
           {/* Expansion Selector Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-stone-950 border border-stone-800 rounded-xl">
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-stone-950 border border-stone-800 rounded-xl">
             <button
               onClick={() => {
                 setSelectedExpansion('base');
                 setSelectedMode('base');
               }}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer ${
+              className={`px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer min-h-[42px] flex items-center gap-1.5 ${
                 selectedExpansion === 'base'
-                  ? 'bg-amber-600 text-stone-950 shadow-md font-extrabold'
+                  ? 'bg-amber-600 text-stone-950 shadow-md font-black'
                   : 'text-stone-400 hover:text-stone-200'
               }`}
             >
-              ⚜️ {language === 'sr' ? 'Osnovna Igra' : 'Base Game'}
+              <span>⚜️</span>
+              <span>{language === 'sr' ? 'Osnovna Igra' : 'Base Game'}</span>
             </button>
 
             <button
@@ -373,13 +374,14 @@ export function SetupGuide({ language }: SetupGuideProps) {
                 setSelectedExpansion('trade_intrigue');
                 setSelectedMode('trade_orders');
               }}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer ${
+              className={`px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer min-h-[42px] flex items-center gap-1.5 ${
                 selectedExpansion === 'trade_intrigue'
-                  ? 'bg-amber-600 text-stone-950 shadow-md font-extrabold'
+                  ? 'bg-amber-600 text-stone-950 shadow-md font-black'
                   : 'text-stone-400 hover:text-stone-200'
               }`}
             >
-              📜 Trade & Intrigue
+              <span>📜</span>
+              <span>Trade &amp; Intrigue</span>
             </button>
 
             <button
@@ -387,24 +389,25 @@ export function SetupGuide({ language }: SetupGuideProps) {
                 setSelectedExpansion('invasion');
                 setSelectedMode('invasion_prosperity');
               }}
-              className={`px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer ${
+              className={`px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer min-h-[42px] flex items-center gap-1.5 ${
                 selectedExpansion === 'invasion'
-                  ? 'bg-amber-600 text-stone-950 shadow-md font-extrabold'
+                  ? 'bg-amber-600 text-stone-950 shadow-md font-black'
                   : 'text-stone-400 hover:text-stone-200'
               }`}
             >
-              ⚔️ Invasion (Velika Ekspanzija)
+              <span>⚔️</span>
+              <span>Invasion</span>
             </button>
           </div>
         </div>
 
         {/* Sub-scenario buttons when an expansion is selected */}
         {selectedExpansion === 'trade_intrigue' && (
-          <div className="flex flex-wrap items-center gap-2 pt-1 pb-2">
+          <div className="flex flex-wrap items-center gap-2 pt-1 pb-1">
             <span className="text-xs text-amber-400 font-semibold">{language === 'sr' ? 'Modul:' : 'Module:'}</span>
             <button
               onClick={() => setSelectedMode('trade_orders')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-semibold cursor-pointer min-h-[40px] ${
                 selectedMode === 'trade_orders' ? 'bg-amber-600 text-stone-950 font-bold' : 'bg-stone-800 text-stone-300'
               }`}
             >
@@ -412,7 +415,7 @@ export function SetupGuide({ language }: SetupGuideProps) {
             </button>
             <button
               onClick={() => setSelectedMode('trade_intrigue')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-semibold cursor-pointer min-h-[40px] ${
                 selectedMode === 'trade_intrigue' ? 'bg-amber-600 text-stone-950 font-bold' : 'bg-stone-800 text-stone-300'
               }`}
             >
@@ -422,54 +425,54 @@ export function SetupGuide({ language }: SetupGuideProps) {
         )}
 
         {selectedExpansion === 'invasion' && (
-          <div className="flex flex-wrap items-center gap-2 pt-1 pb-2">
+          <div className="flex flex-wrap items-center gap-2 pt-1 pb-1">
             <span className="text-xs text-amber-400 font-semibold">{language === 'sr' ? 'Scenario:' : 'Scenario:'}</span>
             <button
               onClick={() => setSelectedMode('invasion_prosperity')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-semibold cursor-pointer min-h-[40px] ${
                 selectedMode === 'invasion_prosperity' ? 'bg-amber-600 text-stone-950 font-bold' : 'bg-stone-800 text-stone-300'
               }`}
             >
-              🏛️ {language === 'sr' ? 'Prosperity (Blagostanje)' : 'Prosperity (2-5p)'}
+              🏛️ {language === 'sr' ? 'Prosperity' : 'Prosperity'}
             </button>
             <button
               onClick={() => setSelectedMode('invasion_coop')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-semibold cursor-pointer min-h-[40px] ${
                 selectedMode === 'invasion_coop' ? 'bg-amber-600 text-stone-950 font-bold' : 'bg-stone-800 text-stone-300'
               }`}
             >
-              🛡️ {language === 'sr' ? 'Invasion (Kooperativno 2-5p)' : 'Invasion Co-op'}
+              🛡️ {language === 'sr' ? 'Invasion Koop' : 'Invasion Co-op'}
             </button>
             <button
               onClick={() => {
                 setSelectedMode('invasion_duel');
                 setPlayerCount(2);
               }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-semibold cursor-pointer min-h-[40px] ${
                 selectedMode === 'invasion_duel' ? 'bg-amber-600 text-stone-950 font-bold' : 'bg-stone-800 text-stone-300'
               }`}
             >
-              ⚔️ {language === 'sr' ? 'The Duel (Dvoboj za 2)' : 'The Duel (2p)'}
+              ⚔️ {language === 'sr' ? 'The Duel (Dvoboj)' : 'The Duel'}
             </button>
             <button
               onClick={() => {
                 setSelectedMode('invasion_solo_dignitary');
-                setPlayerCount(2); // 1 player essentially
+                setPlayerCount(2);
               }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-semibold cursor-pointer min-h-[40px] ${
                 selectedMode.startsWith('invasion_solo') ? 'bg-amber-600 text-stone-950 font-bold' : 'bg-stone-800 text-stone-300'
               }`}
             >
-              👤 {language === 'sr' ? 'Solo Scenariji' : 'Solo Scenarios'}
+              👤 {language === 'sr' ? 'Solo' : 'Solo'}
             </button>
           </div>
         )}
 
         {/* Player Count Selector & Tabs */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-stone-800">
-          <div className="flex items-center gap-2 p-1.5 bg-stone-950 border border-stone-800 rounded-lg">
-            <span className="text-xs text-stone-400 font-medium px-2">
-              {language === 'sr' ? 'Broj igrača:' : 'Players:'}
+          <div className="flex items-center gap-1.5 p-1 bg-stone-950 border border-stone-800 rounded-xl overflow-x-auto">
+            <span className="text-xs text-stone-400 font-medium px-2 shrink-0">
+              {language === 'sr' ? 'Igrača:' : 'Players:'}
             </span>
             {([2, 3, 4, ...(selectedExpansion === 'invasion' ? [5] : [])] as const).map(num => (
               <button
@@ -478,13 +481,14 @@ export function SetupGuide({ language }: SetupGuideProps) {
                   setPlayerCount(num as any);
                   setGoodsDrawn(false);
                 }}
-                className={`px-3.5 py-1.5 rounded-md font-semibold text-xs md:text-sm transition cursor-pointer ${
+                className={`px-3.5 py-2 rounded-lg font-bold text-xs sm:text-sm transition cursor-pointer min-h-[42px] flex items-center gap-1 shrink-0 ${
                   playerCount === num
-                    ? 'bg-amber-600 text-white shadow-md'
-                    : 'text-stone-400 hover:text-stone-200'
+                    ? 'bg-amber-600 text-stone-950 font-black shadow-md'
+                    : 'text-stone-300 hover:text-white bg-stone-900/60'
                 }`}
               >
-                {num} {language === 'sr' ? 'Igrača' : 'Players'}
+                <span>{num}</span>
+                <span className="text-[11px] font-normal opacity-80">{language === 'sr' ? 'igr.' : 'p.'}</span>
               </button>
             ))}
           </div>
@@ -492,32 +496,32 @@ export function SetupGuide({ language }: SetupGuideProps) {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setActiveTab('checklist')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg flex items-center gap-1.5 cursor-pointer ${
-                activeTab === 'checklist' ? 'bg-stone-800 text-amber-400 border border-amber-500/30' : 'text-stone-400'
+              className={`px-3.5 py-2 text-xs font-bold rounded-xl flex items-center gap-1.5 cursor-pointer min-h-[42px] transition ${
+                activeTab === 'checklist' ? 'bg-stone-800 text-amber-400 border border-amber-500/40 shadow-sm' : 'bg-stone-950 border border-stone-800 text-stone-400 hover:text-stone-200'
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5" />
-              {language === 'sr' ? 'Koraci' : 'Steps'}
+              <BookOpen className="w-4 h-4 text-amber-500" />
+              <span>{language === 'sr' ? 'Koraci' : 'Steps'}</span>
             </button>
 
             <button
               onClick={() => setActiveTab('adjustments')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg flex items-center gap-1.5 cursor-pointer ${
-                activeTab === 'adjustments' ? 'bg-stone-800 text-amber-400 border border-amber-500/30' : 'text-stone-400'
+              className={`px-3.5 py-2 text-xs font-bold rounded-xl flex items-center gap-1.5 cursor-pointer min-h-[42px] transition ${
+                activeTab === 'adjustments' ? 'bg-stone-800 text-amber-400 border border-amber-500/40 shadow-sm' : 'bg-stone-950 border border-stone-800 text-stone-400 hover:text-stone-200'
               }`}
             >
-              <ShieldAlert className="w-3.5 h-3.5" />
-              {language === 'sr' ? 'Uklanjanje' : 'Removals'}
+              <ShieldAlert className="w-4 h-4 text-amber-500" />
+              <span>{language === 'sr' ? 'Uklanjanje' : 'Removals'}</span>
             </button>
 
             <button
               onClick={() => setActiveTab('randomizer')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg flex items-center gap-1.5 cursor-pointer ${
-                activeTab === 'randomizer' ? 'bg-stone-800 text-amber-400 border border-amber-500/30' : 'text-stone-400'
+              className={`px-3.5 py-2 text-xs font-bold rounded-xl flex items-center gap-1.5 cursor-pointer min-h-[42px] transition ${
+                activeTab === 'randomizer' ? 'bg-stone-800 text-amber-400 border border-amber-500/40 shadow-sm' : 'bg-stone-950 border border-stone-800 text-stone-400 hover:text-stone-200'
               }`}
             >
-              <Shuffle className="w-3.5 h-3.5" />
-              {language === 'sr' ? 'Roba' : 'Goods'}
+              <Shuffle className="w-4 h-4 text-amber-500" />
+              <span>{language === 'sr' ? 'Roba' : 'Goods'}</span>
             </button>
           </div>
         </div>

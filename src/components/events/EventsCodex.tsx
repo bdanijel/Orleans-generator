@@ -109,7 +109,7 @@ export function EventsCodex({ language }: EventsCodexProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={handleDrawRandomEvent}
-              className="px-3.5 py-2 bg-amber-600 hover:bg-amber-500 text-stone-950 text-xs font-bold rounded-lg flex items-center gap-1.5 transition cursor-pointer shadow-md"
+              className="px-3.5 py-2.5 bg-amber-600 hover:bg-amber-500 active:bg-amber-700 text-stone-950 text-xs font-bold rounded-xl flex items-center gap-1.5 transition cursor-pointer shadow-md min-h-[42px]"
             >
               <Dice5 className="w-4 h-4" />
               <span>{language === 'sr' ? 'Nasumičan Događaj' : 'Draw Random'}</span>
@@ -117,7 +117,7 @@ export function EventsCodex({ language }: EventsCodexProps) {
 
             <button
               onClick={() => setShowTortureModal(true)}
-              className="px-3.5 py-2 bg-rose-950/80 hover:bg-rose-900 text-rose-300 text-xs font-semibold rounded-lg border border-rose-800/60 flex items-center gap-1.5 transition cursor-pointer"
+              className="px-3.5 py-2.5 bg-rose-950/80 hover:bg-rose-900 active:bg-rose-950 text-rose-300 text-xs font-semibold rounded-xl border border-rose-800/60 flex items-center gap-1.5 transition cursor-pointer min-h-[42px]"
             >
               <Skull className="w-4 h-4" />
               <span>{language === 'sr' ? 'Mučenje (Torture)' : 'Torture Rules'}</span>
@@ -126,21 +126,21 @@ export function EventsCodex({ language }: EventsCodexProps) {
         </div>
 
         {/* Expansion Selection Filter */}
-        <div className="flex flex-wrap items-center gap-2 pb-1">
-          <span className="text-xs text-stone-400 font-semibold">{language === 'sr' ? 'Izvor:' : 'Source:'}</span>
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+          <span className="text-xs text-stone-400 font-semibold shrink-0 mr-1">{language === 'sr' ? 'Izvor:' : 'Source:'}</span>
           {[
             { id: 'all', labelSr: 'Svi događaji', labelEn: 'All Events' },
-            { id: 'base', labelSr: '⚜️ Osnovna igra (6)', labelEn: 'Base Game (6)' },
+            { id: 'base', labelSr: '⚜️ Osnovna (6)', labelEn: 'Base Game (6)' },
             { id: 'trade_intrigue', labelSr: '📜 Trade & Intrigue (34)', labelEn: 'Trade & Intrigue (34)' },
-            { id: 'invasion', labelSr: '⚔️ Invasion Ekspanzija (31+)', labelEn: 'Invasion Expansion (31+)' }
+            { id: 'invasion', labelSr: '⚔️ Invasion (31+)', labelEn: 'Invasion (31+)' }
           ].map(exp => (
             <button
               key={exp.id}
               onClick={() => setSelectedExpansion(exp.id as any)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+              className={`px-3 py-2 rounded-xl text-xs font-bold transition cursor-pointer whitespace-nowrap min-h-[40px] flex items-center ${
                 selectedExpansion === exp.id
-                  ? 'bg-amber-600 text-stone-950'
-                  : 'bg-stone-950 text-stone-400 hover:text-stone-200 border border-stone-800'
+                  ? 'bg-amber-600 text-stone-950 font-black shadow-md'
+                  : 'bg-stone-950 text-stone-300 hover:text-stone-100 border border-stone-800'
               }`}
             >
               {language === 'sr' ? exp.labelSr : exp.labelEn}
@@ -149,35 +149,46 @@ export function EventsCodex({ language }: EventsCodexProps) {
         </div>
 
         {/* Filter Controls & Search */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
           {/* Search Box */}
           <div className="md:col-span-5 relative">
-            <Search className="w-4 h-4 text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-stone-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
-              placeholder={language === 'sr' ? 'Pretraži po nemačkom imenu (Ablass, Pest...), opisu, kazni...' : 'Search by German title (Ablass, Pest...), description...'}
+              inputMode="search"
+              placeholder={language === 'sr' ? 'Pretraži: Ablass, Pest, kuga, porez...' : 'Search: Ablass, Pest, plague, tax...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-stone-950 border border-stone-800 focus:border-amber-500 rounded-lg text-xs md:text-sm text-stone-200 placeholder:text-stone-500"
+              className="w-full pl-10 pr-9 py-2.5 bg-stone-950 border border-stone-800 focus:border-amber-500 rounded-xl text-base text-stone-100 placeholder:text-stone-500 min-h-[44px]"
             />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-200 text-xs w-6 h-6 flex items-center justify-center rounded-full bg-stone-900 border border-stone-750 cursor-pointer"
+                aria-label="Obriši pretragu"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
           {/* Severity / Type Filter */}
-          <div className="md:col-span-7 flex items-center gap-1.5 overflow-x-auto p-1 bg-stone-950 border border-stone-800 rounded-lg">
+          <div className="md:col-span-7 flex items-center gap-1.5 overflow-x-auto p-1 bg-stone-950 border border-stone-800 rounded-xl no-scrollbar">
             {[
               { id: 'all', nameSr: 'Sve vrste', nameEn: 'All Types' },
               { id: 'positive', nameSr: 'Priliv / Bonus', nameEn: 'Positive' },
               { id: 'negative', nameSr: 'Gubitak / Kazna', nameEn: 'Hazards' },
-              { id: 'payment', nameSr: 'Porezi & Nameti', nameEn: 'Taxes & Dues' },
-              { id: 'restriction', nameSr: 'Zabrane akcija', nameEn: 'Restrictions' },
+              { id: 'payment', nameSr: 'Porezi & Nameti', nameEn: 'Taxes' },
+              { id: 'restriction', nameSr: 'Zabrane', nameEn: 'Restrictions' },
               { id: 'special', nameSr: 'Specijalno', nameEn: 'Special' },
             ].map(sev => (
               <button
                 key={sev.id}
                 onClick={() => setSelectedSeverity(sev.id as any)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-md whitespace-nowrap transition cursor-pointer ${
+                className={`px-3 py-2 text-xs font-semibold rounded-lg whitespace-nowrap transition cursor-pointer min-h-[38px] flex items-center ${
                   selectedSeverity === sev.id
-                    ? 'bg-stone-800 text-amber-400 border border-amber-500/40'
+                    ? 'bg-stone-800 text-amber-400 border border-amber-500/40 font-bold'
                     : 'text-stone-400 hover:text-stone-200'
                 }`}
               >

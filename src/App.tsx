@@ -29,7 +29,7 @@ export function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8 pb-28 md:pb-8">
         {currentTab === 'setup' && <SetupGuide language={language} />}
         {currentTab === 'scoring' && <ScoringCalculator language={language} />}
         {currentTab === 'events' && <EventsCodex language={language} />}
@@ -38,13 +38,13 @@ export function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-stone-900 bg-stone-950/80 py-6 text-center text-xs text-stone-500 space-y-2">
+      <footer className="border-t border-stone-900 bg-stone-950/80 py-6 mb-16 md:mb-0 text-center text-xs text-stone-500 space-y-2 px-4">
         <div className="flex items-center justify-center gap-2 text-stone-400">
           <FleurDeLisIcon size={16} />
-          <span>Orléans Companion & Scoring Tool • Free & Open Source</span>
+          <span>Orléans Companion • Šta igramo?</span>
         </div>
         <p className="max-w-md mx-auto text-stone-600 text-[11px]">
-          Created for board game enthusiasts. Supports Base Game, Trade & Intrigue, and Invasion expansions.
+          Optimizovano za mobilne telefone, tablete i računare. Podržava Osnovnu igru, Trade &amp; Intrigue i Invasion.
         </p>
       </footer>
     </div>

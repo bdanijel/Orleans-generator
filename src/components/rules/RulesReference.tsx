@@ -39,35 +39,35 @@ export function RulesReference({ language }: RulesReferenceProps) {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 p-1.5 bg-stone-950 border border-stone-800 rounded-lg">
+          <div className="flex items-center gap-1.5 p-1 bg-stone-950 border border-stone-800 rounded-xl overflow-x-auto no-scrollbar">
             <button
               onClick={() => setActiveTab('general')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition cursor-pointer ${
-                activeTab === 'general' ? 'bg-amber-600 text-stone-950' : 'text-stone-400 hover:text-stone-200'
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition cursor-pointer whitespace-nowrap min-h-[38px] ${
+                activeTab === 'general' ? 'bg-amber-600 text-stone-950 shadow-md font-black' : 'text-stone-400 hover:text-stone-200'
               }`}
             >
               {language === 'sr' ? 'Opšta pravila' : 'General Rules'}
             </button>
             <button
               onClick={() => setActiveTab('tech')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition cursor-pointer ${
-                activeTab === 'tech' ? 'bg-amber-600 text-stone-950' : 'text-stone-400 hover:text-stone-200'
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition cursor-pointer whitespace-nowrap min-h-[38px] ${
+                activeTab === 'tech' ? 'bg-amber-600 text-stone-950 shadow-md font-black' : 'text-stone-400 hover:text-stone-200'
               }`}
             >
               {language === 'sr' ? 'Tehnologije' : 'Technology'}
             </button>
             <button
               onClick={() => setActiveTab('deeds')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition cursor-pointer ${
-                activeTab === 'deeds' ? 'bg-amber-600 text-stone-950' : 'text-stone-400 hover:text-stone-200'
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition cursor-pointer whitespace-nowrap min-h-[38px] ${
+                activeTab === 'deeds' ? 'bg-amber-600 text-stone-950 shadow-md font-black' : 'text-stone-400 hover:text-stone-200'
               }`}
             >
               {language === 'sr' ? 'Gradska kuća & Dela' : 'Beneficial Deeds'}
             </button>
             <button
               onClick={() => setActiveTab('torture')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition cursor-pointer ${
-                activeTab === 'torture' ? 'bg-amber-600 text-stone-950' : 'text-stone-400 hover:text-stone-200'
+              className={`px-3 py-2 text-xs font-bold rounded-lg transition cursor-pointer whitespace-nowrap min-h-[38px] ${
+                activeTab === 'torture' ? 'bg-amber-600 text-stone-950 shadow-md font-black' : 'text-stone-400 hover:text-stone-200'
               }`}
             >
               {language === 'sr' ? 'Mučenje (Bankrot)' : 'Torture'}

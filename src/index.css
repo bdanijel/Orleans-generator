@@ -5,11 +5,28 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     background-color: #12100e;
     color: #f3efe6;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, .font-display {
     font-family: 'Cinzel', Georgia, serif;
   }
+
+  button, a, input, select {
+    touch-action: manipulation;
+  }
+
+  /* Prevent iOS Safari auto-zoom on input focus */
+  @media screen and (max-width: 768px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+  }
+}
+
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 8px);
 }
 
 .parchment-texture {
